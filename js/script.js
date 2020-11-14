@@ -1,1 +1,1 @@
-console.log('hello from script.js')
+let nameInput = document.getElementById('name').focus()
