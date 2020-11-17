@@ -31,17 +31,26 @@ designTheme.addEventListener('change', (event) => {
   }
 })
 
+
+
+
 const checkboxArea = document.querySelector('.activities')
 //enable and disable checkboxes
 const checkboxes = document.querySelectorAll('.activities, input');
+let totalCostDisplay = `
+  <span id='total-cost'></span>
+  `
+checkboxArea.insertAdjacentHTML('beforeend', totalCostDisplay);
 
 document.querySelector('.activities').addEventListener('change', e => {
   let clicked = e.target
   let clickedType = e.target.getAttribute('data-day-and-time')
-  console.log(clicked, clickedType)
+  let totalCost = 0
+
   for ( let i = 0; i < checkboxes.length; i++ ) {
     let checkboxType = checkboxes[i].getAttribute('data-day-and-time')
-    console.log(clickedType)
+
+
     if (clickedType !== null) {
     if ( clickedType === checkboxType && clicked !== checkboxes[i]) {
        if (clicked.checked === true) {
@@ -50,24 +59,18 @@ document.querySelector('.activities').addEventListener('change', e => {
          checkboxes[i].disabled = false
        }
      }
-
    }
 
-  }
-  let totalCost = 0
-  for ( let i = 0; i < checkboxes.length; i++ ) {
-    if (checkboxes[i].checked === true) {
-    let value = parseInt(e.target.getAttribute('data-cost'), 10)
-    totalCost += value
+   if (checkboxes[i].checked === true) {
+     totalCost += parseInt(e.target.getAttribute('data-cost'), 10)
+   }
 
-    html = `
-      <span>$${totalCost}</span>
-      `
-    checkboxArea.insertAdjacentHTML('beforeend', html);
+
   }
+
+  if (totalCost === 0) {
+    document.getElementById('total-cost').innerHTML = ''
+  } else {
+    document.getElementById('total-cost').innerHTML = totalCost
   }
-  // html = `
-  //   <span>$${totalCost}</span>
-  //   `
-  // checkboxArea.insertAdjacentHTML('beforeend', html);
 });
