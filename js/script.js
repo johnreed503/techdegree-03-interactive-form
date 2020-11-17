@@ -43,6 +43,7 @@ let totalCostDisplay = `
 checkboxArea.insertAdjacentHTML('beforeend', totalCostDisplay);
 
 document.querySelector('.activities').addEventListener('change', e => {
+
   let clicked = e.target
   let clickedType = e.target.getAttribute('data-day-and-time')
   let totalCost = 0
@@ -60,9 +61,8 @@ document.querySelector('.activities').addEventListener('change', e => {
        }
      }
    }
-
    if (checkboxes[i].checked === true) {
-     totalCost += parseInt(e.target.getAttribute('data-cost'), 10)
+     totalCost += parseInt(checkboxes[i].getAttribute('data-cost'), 10)
    }
 
 
@@ -73,4 +73,5 @@ document.querySelector('.activities').addEventListener('change', e => {
   } else {
     document.getElementById('total-cost').innerHTML = totalCost
   }
+  console.log(totalCost)
 });
