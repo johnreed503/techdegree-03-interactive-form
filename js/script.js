@@ -1,7 +1,22 @@
 let nameInput = document.getElementById('name').focus()
 
+
+
 let otherRoleInput = document.getElementById('other-title')
 otherRoleInput.style.display = 'none'
+let titleSelection = document.getElementById('title')
+titleSelection.addEventListener('change', (event) => {
+  console.log(titleSelection.value)
+  if (titleSelection.value === 'other') {
+    otherRoleInput.style.display = 'block'
+  } else {
+    otherRoleInput.style.display = 'none'
+  }
+});
+
+
+
+
 
 
 let colorSelector = document.getElementById('color')
@@ -9,7 +24,6 @@ let designTheme = document.getElementById('design')
 colorSelector.innerHTML = `
   <option value="select theme">Please select a T-shirt theme</option>
   `
-
 
 designTheme.addEventListener('change', (event) => {
   if (designTheme.value === 'select theme') {
@@ -43,15 +57,11 @@ let totalCostDisplay = `
 checkboxArea.insertAdjacentHTML('beforeend', totalCostDisplay);
 
 document.querySelector('.activities').addEventListener('change', e => {
-
   let clicked = e.target
   let clickedType = e.target.getAttribute('data-day-and-time')
   let totalCost = 0
-
   for ( let i = 0; i < checkboxes.length; i++ ) {
     let checkboxType = checkboxes[i].getAttribute('data-day-and-time')
-
-
     if (clickedType !== null) {
     if ( clickedType === checkboxType && clicked !== checkboxes[i]) {
        if (clicked.checked === true) {
@@ -64,10 +74,7 @@ document.querySelector('.activities').addEventListener('change', e => {
    if (checkboxes[i].checked === true) {
      totalCost += parseInt(checkboxes[i].getAttribute('data-cost'), 10)
    }
-
-
   }
-
   if (totalCost === 0) {
     document.getElementById('total-cost').innerHTML = ''
   } else {
