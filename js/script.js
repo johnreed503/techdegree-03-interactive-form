@@ -6,7 +6,6 @@ let otherRoleInput = document.getElementById('other-title')
 otherRoleInput.style.display = 'none'
 let titleSelection = document.getElementById('title')
 titleSelection.addEventListener('change', (event) => {
-  console.log(titleSelection.value)
   if (titleSelection.value === 'other') {
     otherRoleInput.style.display = 'block'
   } else {
@@ -78,7 +77,16 @@ document.querySelector('.activities').addEventListener('change', e => {
   if (totalCost === 0) {
     document.getElementById('total-cost').innerHTML = ''
   } else {
-    document.getElementById('total-cost').innerHTML = totalCost
+    document.getElementById('total-cost').innerHTML = 'Total: $' + totalCost
   }
-  console.log(totalCost)
 });
+
+
+
+//making 'select payment method unselectable after something has happened'
+let paymentTypeInput = document.getElementById('payment')
+let selectMethod = paymentTypeInput[0]
+console.log(selectMethod)
+paymentTypeInput.addEventListener('change', e => {
+  selectMethod.disabled = true
+})
