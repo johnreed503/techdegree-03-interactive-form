@@ -1,3 +1,4 @@
+//puts cursor on name field upon page load
 let nameInput = document.getElementById('name').focus()
 
 
@@ -19,28 +20,38 @@ titleSelection.addEventListener('change', (event) => {
 
 
 let colorSelector = document.getElementById('color')
+let colorSelectorLabel = document.getElementById('color-label')
 let designTheme = document.getElementById('design')
 colorSelector.innerHTML = `
   <option value="select theme">Please select a T-shirt theme</option>
   `
+  colorSelector.style.display = 'none'
+  colorSelectorLabel.style.display = 'none'
 
 designTheme.addEventListener('change', (event) => {
   if (designTheme.value === 'select theme') {
     colorSelector.innerHTML = `
       <option value="select theme">Please select a T-shirt theme</option>
       `
+//this line is where im working
+    colorSelector.style.display = 'none'
+    colorSelectorLabel.style.display = 'none'
   } else if (designTheme.value === 'js puns') {
     colorSelector.innerHTML = `
       <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
       <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
       <option value="gold">Gold (JS Puns shirt only)</option>
       `
+      colorSelector.style.display = 'inline-block'
+      colorSelectorLabel.style.display = 'inline-block'
   } else {
     colorSelector.innerHTML = `
       <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
       <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>
       <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
       `
+      colorSelector.style.display = 'inline-block'
+      colorSelectorLabel.style.display = 'inline-block'
   }
 })
 
@@ -81,12 +92,26 @@ document.querySelector('.activities').addEventListener('change', e => {
   }
 });
 
+let paypal = document.getElementById('paypal')
+let bitcoin = document.getElementById('bitcoin')
+let creditCard = document.getElementById('credit-card')
+bitcoin.style.display = 'none'
+paypal.style.display = 'none'
 
 
-//making 'select payment method unselectable after something has happened'
 let paymentTypeInput = document.getElementById('payment')
-let selectMethod = paymentTypeInput[0]
-console.log(selectMethod)
 paymentTypeInput.addEventListener('change', e => {
-  selectMethod.disabled = true
+  if (paymentTypeInput.value === 'paypal') {
+    paypal.style.display = 'block'
+    creditCard.style.display = 'none'
+    bitcoin.style.display = 'none'
+  } else if (paymentTypeInput.value === 'bitcoin') {
+    paypal.style.display = 'none'
+    creditCard.style.display = 'none'
+    bitcoin.style.display = 'block'
+  } else {
+    paypal.style.display = 'none'
+    creditCard.style.display = 'block'
+    bitcoin.style.display = 'none'
+  }
 })
