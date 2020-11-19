@@ -21,19 +21,21 @@ titleSelection.addEventListener('change', (event) => {
 
 let colorSelector = document.getElementById('color')
 let colorSelectorLabel = document.getElementById('color-label')
+//let colorSelector = document.getElementById('shirt-colors')
+
 let designTheme = document.getElementById('design')
 colorSelector.innerHTML = `
   <option value="select theme">Please select a T-shirt theme</option>
   `
-  colorSelector.style.display = 'none'
-  colorSelectorLabel.style.display = 'none'
+  colorSelector.style.visibility = 'hidden'
+  colorSelectorLabel.style.visibility = 'hidden'
 
 designTheme.addEventListener('change', (event) => {
+  designTheme[0].disabled = true
   if (designTheme.value === 'select theme') {
     colorSelector.innerHTML = `
       <option value="select theme">Please select a T-shirt theme</option>
       `
-//this line is where im working
     colorSelector.style.display = 'none'
     colorSelectorLabel.style.display = 'none'
   } else if (designTheme.value === 'js puns') {
@@ -42,16 +44,16 @@ designTheme.addEventListener('change', (event) => {
       <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
       <option value="gold">Gold (JS Puns shirt only)</option>
       `
-      colorSelector.style.display = 'inline-block'
-      colorSelectorLabel.style.display = 'inline-block'
+      colorSelector.style.visibility = 'visible'
+      colorSelectorLabel.style.visibility = 'visible'
   } else {
     colorSelector.innerHTML = `
       <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
       <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>
       <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
       `
-      colorSelector.style.display = 'inline-block'
-      colorSelectorLabel.style.display = 'inline-block'
+      colorSelector.style.visibility = 'visible'
+      colorSelectorLabel.style.visibility = 'visible'
   }
 })
 
@@ -115,3 +117,11 @@ paymentTypeInput.addEventListener('change', e => {
     bitcoin.style.display = 'none'
   }
 })
+
+
+// function formValidation () {
+//   if (nameInput.value === undefined) {
+//     console.log("hello")
+//   }
+// }
+// formValidation()
