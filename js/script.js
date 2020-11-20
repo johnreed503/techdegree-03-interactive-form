@@ -132,10 +132,30 @@ const nameValidator = () => {
   }
 }
 
+let email = document.getElementById('mail')
+const emailValidator = () => {
+  let emailValue = email.value
+  let atSymbol = emailValue.indexOf('@')
+  let periodSymbol = emailValue.lastIndexOf('.')
+  if (atSymbol > 1 && periodSymbol > (atSymbol + 1)) {
+    email.style.borderColor = 'white'
+    return true
+  } else {
+    email.style.borderColor = 'red'
+    return false
+  }
+}
+
 let form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
+
   if (!nameValidator()) {
     e.preventDefault();
     console.log('prevented by nameValidator')
+  }
+
+  if (!emailValidator()) {
+    e.preventDefault();
+    console.log('prevented by emailValidator')
   }
 })
