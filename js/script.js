@@ -1,7 +1,7 @@
 //puts cursor on name field upon page load
-let nameInput = document.getElementById('name').focus()
-
-
+//let nameInput = document.getElementById('name').focus()
+let nameInput = document.querySelector("#name")
+nameInput.focus()
 
 let otherRoleInput = document.getElementById('other-title')
 otherRoleInput.style.display = 'none'
@@ -21,7 +21,6 @@ titleSelection.addEventListener('change', (event) => {
 
 let colorSelector = document.getElementById('color')
 let colorSelectorLabel = document.getElementById('color-label')
-//let colorSelector = document.getElementById('shirt-colors')
 
 let designTheme = document.getElementById('design')
 colorSelector.innerHTML = `
@@ -119,9 +118,24 @@ paymentTypeInput.addEventListener('change', e => {
 })
 
 
-// function formValidation () {
-//   if (nameInput.value === undefined) {
-//     console.log("hello")
-//   }
-// }
-// formValidation()
+
+
+
+const nameValidator = () => {
+  let nameInputValue = nameInput.value
+  if (nameInputValue.length > 0) {
+    nameInput.style.borderColor = 'white'
+    return true
+  } else {
+    nameInput.style.borderColor = 'red'
+    return false
+  }
+}
+
+let form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  if (!nameValidator()) {
+    e.preventDefault();
+    console.log('prevented by nameValidator')
+  }
+})
