@@ -161,34 +161,36 @@ let zipCode = document.getElementById('zip')
 let cvv = document.getElementById('cvv')
 
 const creditCardValidator = () => {
-  if (paymentTypeInput.value = 'credit card') {
-
-    console.log(ccNumber.value, zipCode.value, cvv.value)
-
-    if (/^\d{13,16}$/.test(ccNumber.value) === false) {
+  if (/^\d{13,16}$/.test(ccNumber.value) === false) {
       ccNumber.style.borderColor = 'red'
       return false
     } else {
       ccNumber.style.borderColor = 'white'
+      return true
     }
+  }
 
-    if (/^\d{5}$/.test(zipCode.value) === false) {
-      zipCode.style.borderColor = 'red'
-      return false
-    } else {
-      zipcode.style.borderColor = 'white'
-    }
-
-    if (/^\d{3}$/.test(cvv.value) === false) {
-      cvv.style.borderColor = 'red'
-      return false
-    } else {
-      cvv.style.borderColor = 'white'
-    }
-
+const zipCodeValidator = () => {
+  if (/^\d{5}$/.test(zipCode.value) === false) {
+    zipCode.style.borderColor = 'red'
+    return false
+  } else {
+    zipcode.style.borderColor = 'white'
     return true
   }
 }
+
+const cvvValidator = () => {
+  if (/^\d{3}$/.test(cvv.value) === false) {
+    cvv.style.borderColor = 'red'
+    return false
+  } else {
+    cvv.style.borderColor = 'white'
+    return true
+  }
+}
+
+
 
 
 
@@ -216,8 +218,19 @@ form.addEventListener('submit', (e) => {
   //   console.log('prevented by activitiesCheckBoxValidator')
   // }
 
-  if (!creditCardValidator()) {
-    e.preventDefault();
-    console.log('prevented by creditCardValidator')
+  if (paymentTypeInput.value === 'credit card') {
+    console.log('Hello from inside the if statement for cc')
+    if (!creditCardValidator()) {
+      e.preventDefault();
+      console.log('prevented by creditCardValidator')
+    }
+    if (!zipCodeValidator()) {
+      e.preventDefault();
+      console.log('prevented by zipCodeValidator')
+    }
+    if (!cvvValidator()) {
+      e.preventDefault();
+      console.log('prevented by cvvValidator')
+    }
   }
 })
