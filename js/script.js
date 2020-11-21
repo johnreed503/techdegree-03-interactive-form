@@ -14,11 +14,6 @@ titleSelection.addEventListener('change', (event) => {
   }
 });
 
-
-
-
-
-
 let colorSelector = document.getElementById('color')
 let colorSelectorLabel = document.getElementById('color-label')
 
@@ -55,9 +50,6 @@ designTheme.addEventListener('change', (event) => {
       colorSelectorLabel.style.visibility = 'visible'
   }
 })
-
-
-
 
 const checkboxArea = document.querySelector('.activities')
 //enable and disable checkboxes
@@ -146,16 +138,86 @@ const emailValidator = () => {
   }
 }
 
+const activitiesCheckBoxValidator = () => {
+  for (let i = 0; i < checkboxes; i++) {
+    if (checkboxes[i].checked) {
+      //checkboxArea.style.borderColor = 'white'
+      return true
+    }
+  }
+  //checkboxArea.style.borderColor = 'red'
+  return false
+}
+
+
+
+
+
+
+
+
+let ccNumber = document.getElementById('cc-num')
+let zipCode = document.getElementById('zip')
+let cvv = document.getElementById('cvv')
+
+const creditCardValidator = () => {
+  if (paymentTypeInput.value = 'credit card') {
+
+    console.log(ccNumber.value, zipCode.value, cvv.value)
+
+    if (/^\d{13,16}$/.test(ccNumber.value) === false) {
+      ccNumber.style.borderColor = 'red'
+      return false
+    } else {
+      ccNumber.style.borderColor = 'white'
+    }
+
+    if (/^\d{5}$/.test(zipCode.value) === false) {
+      zipCode.style.borderColor = 'red'
+      return false
+    } else {
+      zipcode.style.borderColor = 'white'
+    }
+
+    if (/^\d{3}$/.test(cvv.value) === false) {
+      cvv.style.borderColor = 'red'
+      return false
+    } else {
+      cvv.style.borderColor = 'white'
+    }
+
+    return true
+  }
+}
+
+
+
+
+
+
+
+
+
 let form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
 
-  if (!nameValidator()) {
-    e.preventDefault();
-    console.log('prevented by nameValidator')
-  }
+  // if (!nameValidator()) {
+  //   e.preventDefault();
+  //   console.log('prevented by nameValidator')
+  // }
+  //
+  // if (!emailValidator()) {
+  //   e.preventDefault();
+  //   console.log('prevented by emailValidator')
+  // }
+  //
+  // if (!activitiesCheckBoxValidator()) {
+  //   e.preventDefault();
+  //   console.log('prevented by activitiesCheckBoxValidator')
+  // }
 
-  if (!emailValidator()) {
+  if (!creditCardValidator()) {
     e.preventDefault();
-    console.log('prevented by emailValidator')
+    console.log('prevented by creditCardValidator')
   }
 })
