@@ -59,11 +59,38 @@ let totalCostDisplay = `
   `
 checkboxArea.insertAdjacentHTML('beforeend', totalCostDisplay);
 
+let errorDisplay = `
+  <span id='error-display'></span>
+  `
+checkboxArea.insertAdjacentHTML('beforeend', errorDisplay);
+
+// document.querySelector('.activities').addEventListener('change', e => {
+//   let numberClicked = 0
+//   let noItemsChecked = `
+//     <span>Please select at least one activity</span>
+//   `
+//   for (let i = 0; i < checkboxes.length; i++) {
+//     if (checkboxes[i].checked = true) {
+//       numberClicked += 1
+//     }
+//   }
+//   if (numberClicked === 0) {
+//     checkboxArea.insertAdjacentHTML('beforeend', noItemsChecked)
+//   }
+// })
+
 document.querySelector('.activities').addEventListener('change', e => {
+ //WORKING ON
+  let numberClicked = 0
   let clicked = e.target
   let clickedType = e.target.getAttribute('data-day-and-time')
   let totalCost = 0
   for ( let i = 0; i < checkboxes.length; i++ ) {
+//WORKING ON
+    if (checkboxes[i].checked === true) {
+      numberClicked += 1
+    }
+
     let checkboxType = checkboxes[i].getAttribute('data-day-and-time')
     if (clickedType !== null) {
     if ( clickedType === checkboxType && clicked !== checkboxes[i]) {
@@ -78,6 +105,14 @@ document.querySelector('.activities').addEventListener('change', e => {
      totalCost += parseInt(checkboxes[i].getAttribute('data-cost'), 10)
    }
   }
+  //WORKING ON needs work
+  if (numberClicked === 0) {
+    document.getElementById('error-display').innerHTML = 'Please choose at least one option'
+    document.getElementById('error-display').style.color = 'red'
+  } else {
+    document.getElementById('error-display').innerHTML = ''
+  }
+
   if (totalCost === 0) {
     document.getElementById('total-cost').innerHTML = ''
   } else {
