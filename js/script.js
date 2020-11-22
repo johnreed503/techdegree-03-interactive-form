@@ -2,6 +2,7 @@
 //let nameInput = document.getElementById('name').focus()
 let nameInput = document.querySelector("#name")
 nameInput.focus()
+let email = document.getElementById('mail')
 
 let otherRoleInput = document.getElementById('other-title')
 otherRoleInput.style.display = 'none'
@@ -13,6 +14,48 @@ titleSelection.addEventListener('change', (event) => {
     otherRoleInput.style.display = 'none'
   }
 });
+
+
+
+
+
+
+
+
+
+let emailErrorDisplay = document.getElementById('email-error-display')
+email.addEventListener('keyup', e => {
+  if (email.value.length === 0) {
+    console.log("hello from email listener")
+    emailErrorDisplay.innerHTML = 'Email field cannot be left blank'
+    emailErrorDisplay.style.color = 'red'
+  } else if (/\./.test(email.value) !== true && /\@/.test(email.value) !== true)  {
+    emailErrorDisplay.innerHTML = 'Email must include "." and "@"'
+    emailErrorDisplay.style.color = 'red'
+  } else if (/\./.test(email.value) === true && /\@/.test(email.value) !== true) {
+    emailErrorDisplay.innerHTML = 'Email must include "@"'
+    emailErrorDisplay.style.color = 'red'
+  } else if (/\./.test(email.value) !== true && /\@/.test(email.value) === true) {
+    emailErrorDisplay.innerHTML = 'Email must include "."'
+    emailErrorDisplay.style.color = 'red'
+  } else {
+    emailErrorDisplay.innerHTML = ''
+  }
+  console.log(/\./.test(email.value))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let colorSelector = document.getElementById('color')
 let colorSelectorLabel = document.getElementById('color-label')
@@ -63,21 +106,6 @@ let errorDisplay = `
   <span id='error-display'></span>
   `
 checkboxArea.insertAdjacentHTML('beforeend', errorDisplay);
-
-// document.querySelector('.activities').addEventListener('change', e => {
-//   let numberClicked = 0
-//   let noItemsChecked = `
-//     <span>Please select at least one activity</span>
-//   `
-//   for (let i = 0; i < checkboxes.length; i++) {
-//     if (checkboxes[i].checked = true) {
-//       numberClicked += 1
-//     }
-//   }
-//   if (numberClicked === 0) {
-//     checkboxArea.insertAdjacentHTML('beforeend', noItemsChecked)
-//   }
-// })
 
 document.querySelector('.activities').addEventListener('change', e => {
  //WORKING ON
@@ -159,7 +187,6 @@ const nameValidator = () => {
   }
 }
 
-let email = document.getElementById('mail')
 const emailValidator = () => {
   let emailValue = email.value
   let atSymbol = emailValue.indexOf('@')
@@ -184,13 +211,6 @@ const activitiesCheckBoxValidator = () => {
   return false
 }
 
-
-
-
-
-
-
-
 let ccNumber = document.getElementById('cc-num')
 let zipCode = document.getElementById('zip')
 let cvv = document.getElementById('cvv')
@@ -210,7 +230,7 @@ const zipCodeValidator = () => {
     zipCode.style.borderColor = 'red'
     return false
   } else {
-    zipcode.style.borderColor = 'white'
+    zipCode.style.borderColor = 'white'
     return true
   }
 }
@@ -224,16 +244,6 @@ const cvvValidator = () => {
     return true
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 let form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
