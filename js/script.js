@@ -24,8 +24,8 @@ nameInput.addEventListener('keyup', (event) => {
     nameErrorDisplay.innerHTML = ''
   } else {
     nameInput.style.borderColor = 'red'
-    nameErrorDisplay.innerHTML = 'Name field cannot be left blank'
-    nameErrorDisplay.style.color = 'red'
+    nameErrorDisplay.innerHTML = '*Name field cannot be left blank'
+    nameErrorDisplay.style.color = 'black'
   }
 })
 
@@ -33,23 +33,21 @@ nameInput.addEventListener('keyup', (event) => {
 let emailErrorDisplay = document.getElementById('email-error-display')
 email.addEventListener('keyup', e => {
   if (email.value.length === 0) {
-    console.log("hello from email listener")
-    emailErrorDisplay.innerHTML = 'Email field cannot be left blank'
-    emailErrorDisplay.style.color = 'red'
+    emailErrorDisplay.innerHTML = '*Email field cannot be left blank'
+    emailErrorDisplay.style.color = 'black'
   } else if (/\./.test(email.value) !== true && /\@/.test(email.value) !== true)  {
-    emailErrorDisplay.innerHTML = 'Email must include "." and "@"'
-    emailErrorDisplay.style.color = 'red'
+    emailErrorDisplay.innerHTML = '*Email must include "." and "@"'
+    emailErrorDisplay.style.color = 'black'
   } else if (/\./.test(email.value) === true && /\@/.test(email.value) !== true) {
-    emailErrorDisplay.innerHTML = 'Email must include "@"'
-    emailErrorDisplay.style.color = 'red'
+    emailErrorDisplay.innerHTML = '*Email must include "@"'
+    emailErrorDisplay.style.color = 'black'
   } else if (/\./.test(email.value) !== true && /\@/.test(email.value) === true) {
-    emailErrorDisplay.innerHTML = 'Email must include "."'
-    emailErrorDisplay.style.color = 'red'
+    emailErrorDisplay.innerHTML = '*Email must include "."'
+    emailErrorDisplay.style.color = 'black'
   } else {
     emailErrorDisplay.innerHTML = ''
     email.style.borderColor = 'white'
   }
-  console.log(/\./.test(email.value))
 })
 
 let colorSelector = document.getElementById('color')
@@ -123,8 +121,8 @@ document.querySelector('.activities').addEventListener('change', e => {
    }
   }
   if (numberClicked === 0) {
-    document.getElementById('error-display').innerHTML = 'Please choose at least one option'
-    document.getElementById('error-display').style.color = 'red'
+    document.getElementById('error-display').innerHTML = '*Please choose at least one option'
+    document.getElementById('error-display').style.color = 'black'
   } else {
     document.getElementById('error-display').innerHTML = ''
   }
@@ -168,8 +166,8 @@ const nameValidator = () => {
     return true
   } else {
     nameInput.style.borderColor = 'red'
-    nameErrorDisplay.innerHTML = 'Name field cannot be left blank'
-    nameErrorDisplay.style.color = 'red'
+    nameErrorDisplay.innerHTML = '*Name field cannot be left blank'
+    nameErrorDisplay.style.color = 'black'
     return false
   }
 }
@@ -183,20 +181,20 @@ const emailValidator = () => {
     return true
   } else {
     email.style.borderColor = 'red'
-    emailErrorDisplay.innerHTML = 'Email field cannot be left blank'
-    emailErrorDisplay.style.color = 'red'
+    emailErrorDisplay.innerHTML = '*Email field cannot be left blank'
+    emailErrorDisplay.style.color = 'black'
     return false
   }
 }
 
 const activitiesCheckBoxValidator = () => {
-  for (let i = 0; i < checkboxes; i++) {
+  for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       return true
     }
   }
-  document.getElementById('error-display').innerHTML = 'Please select at least one activity'
-  document.getElementById('error-display').style.color = 'red'
+  document.getElementById('error-display').innerHTML = '*Please select at least one activity'
+  document.getElementById('error-display').style.color = 'black'
   return false
 
 }
@@ -238,37 +236,24 @@ const cvvValidator = () => {
 //event listener for validations
 let form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
-  //TODO comment out after testing
-  //e.preventDefault();
-
   if (!nameValidator()) {
     e.preventDefault();
-    console.log('prevented by nameValidator')
   }
-
   if (!emailValidator()) {
     e.preventDefault();
-    console.log('prevented by emailValidator')
   }
-
   if (!activitiesCheckBoxValidator()) {
     e.preventDefault();
-    console.log('prevented by activitiesCheckBoxValidator')
   }
-
   if (paymentTypeInput.value === 'credit card') {
-    console.log('Hello from inside the if statement for cc')
     if (!creditCardValidator()) {
       e.preventDefault();
-      console.log('prevented by creditCardValidator')
     }
     if (!zipCodeValidator()) {
       e.preventDefault();
-      console.log('prevented by zipCodeValidator')
     }
     if (!cvvValidator()) {
       e.preventDefault();
-      console.log('prevented by cvvValidator')
     }
   }
 })
